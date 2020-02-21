@@ -4,11 +4,9 @@
 }
 
 .item{
-    color: white;
-    background-color: blueviolet;
-    margin: 1px;
+    color: red;
 }
 
 .item.active {
-    color: gold;
+
 }
