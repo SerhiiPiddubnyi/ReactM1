@@ -4,27 +4,30 @@ import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/news/News";
 import Setting from "./components/setting/Setting";
-import  Videos from "./components/videos/Videos"
+import Videos from "./components/videos/Videos"
+import {Route} from "react-router-dom";
+import {changeText} from "./Redax/State";
 
-const App = () => {
+const App = (props) => {
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route exact path = "/" component={Profile}/>
-                    <Route path = "/profile" component={Profile}/>
-                    <Route path = "/dialogs" component={Dialogs}/>
-                    <Route path = "/news" component={News}/>
-                    <Route path = "/setting" component={Setting}/>
-                    <Route path = "/videos" component={Videos}/>
-                </div>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Route exact path="/" render={() => <Profile state={props.state.profilePage}
+                                                             addPost={props.addPost}
+                                                             changeText = {props.changeText}/>}/>
+                <Route path="/profile" render={() => <Profile state={props.state.profilePage}
+                                                              addPost={props.addPost}
+                                                              changeText = {props.changeText}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                <Route path="/news" component={News}/>
+                <Route path="/setting" component={Setting}/>
+                <Route path="/videos" component={Videos}/>
             </div>
-        </BrowserRouter>
+        </div>
     )
 }
 
