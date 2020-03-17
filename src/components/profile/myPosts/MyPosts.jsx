@@ -10,10 +10,8 @@ const MyPosts = (props) => {
     return (
         <div className={style.postsBlock}>
             <h3>My posts</h3>
-            <NewPost addPost = {props.addPost}
-
-                     text = {props.state.textForNewPost}
-                     changeText = {props.changeText}/>
+            <NewPost text = {props.state.textForNewPost}
+                     dispatch={props.dispatch}/>
             {postsElements}
         </div>
     );

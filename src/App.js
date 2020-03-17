@@ -8,7 +8,6 @@ import News from "./components/news/News";
 import Setting from "./components/setting/Setting";
 import Videos from "./components/videos/Videos"
 import {Route} from "react-router-dom";
-import {changeText} from "./Redax/State";
 
 const App = (props) => {
     return (
@@ -17,12 +16,11 @@ const App = (props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route exact path="/" render={() => <Profile state={props.state.profilePage}
-                                                             addPost={props.addPost}
-                                                             changeText = {props.changeText}/>}/>
+                                                             dispatch={props.dispatch}/>}/>
                 <Route path="/profile" render={() => <Profile state={props.state.profilePage}
-                                                              addPost={props.addPost}
-                                                              changeText = {props.changeText}/>}/>
-                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                                                              dispatch={props.dispatch}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}
+                                                              dispatch={props.dispatch}/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/setting" component={Setting}/>
                 <Route path="/videos" component={Videos}/>

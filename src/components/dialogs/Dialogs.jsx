@@ -2,13 +2,19 @@ import React from "react";
 import style from "./Dialogs.module.css"
 import MessageItem from "./messageItem/MesageItem";
 import DialogItem from "./dialogItem/DialogItem";
+import {addMessageActionCreator, changeTextMessageActionCreator} from "../../Redax/State";
 
 const Dialogs = (props) => {
 
     let newMessage = React.createRef();
 
     let addMessage = () => {
-        alert(newMessage.current.value)
+        props.dispatch(addMessageActionCreator());
+    }
+
+    let changeTextMessage = () => {
+        let text = newMessage.current.value;
+        props.dispatch(changeTextMessageActionCreator(text));
     }
 
     let dialogsElements = props.state.dialogs.map(dialog => <DialogItem key = {dialog.id}
@@ -24,7 +30,7 @@ const Dialogs = (props) => {
             </div>
             <div className={style.messages}>
                 {messagesElements}
-                <textarea ref={newMessage}></textarea>
+                <textarea ref={newMessage} onChange={changeTextMessage} value = {props.state.textForNewMessage}/>
                 <button onClick={addMessage}>OK!</button>
             </div>
         </div>
