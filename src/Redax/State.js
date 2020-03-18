@@ -1,3 +1,6 @@
+import dialogsReducer from "./dialogs-reduer";
+import profileReducer from "./profile-reducer";
+
 const ADD_POST = 'ADD-POST';
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST';
 const ADD_MESSAGE = 'ADD-MESSAGE';
@@ -43,47 +46,9 @@ export let store = {
     },
 
     dispatch (action) {
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: 3,
-                message: this._state.profilePage.textForNewPost,
-                likesCount: 1,
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.textForNewPost = '';
-            this.rerenderEntireTree(this._state);
-        } else if (action.type === ADD_MESSAGE) {
-            let newMessage = {
-                id: 4,
-                message: this._state.dialogsPage.textForNewMessage
-            }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.textForNewMessage = '';
-            this.rerenderEntireTree(this._state);
-        } else if (action.type === CHANGE_TEXT_POST) {
-            this._state.profilePage.textForNewPost = action.newText;
-            this.rerenderEntireTree(this._state);
-        } else if (action.type === CHANGE_TEXT_MESSAGE) {
-            this._state.dialogsPage.textForNewMessage = action.newText;
-            this.rerenderEntireTree(this._state);
-        }
+        this._state.dialogsPage = dialogsReducer(store.getState().dialogsPage, action);
+        this._state.profilePage = profileReducer(store.getState().profilePage, action);
+        store.rerenderEntireTree(store.getState());
+
     },
-}
-
-export  let addPostActionCreator = () => {
-    return {type: ADD_POST}
-}
-
-export let changeTextPostActionCreator = (text) => {
-    return {type: CHANGE_TEXT_POST,
-        newText: text}
-}
-
-export let addMessageActionCreator = () => {
-    return {type: ADD_MESSAGE};
-}
-
-export let changeTextMessageActionCreator =(text) => {
-    return  {type: CHANGE_TEXT_MESSAGE,
-        newText: text};
 }
