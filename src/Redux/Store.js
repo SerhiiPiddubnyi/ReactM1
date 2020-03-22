@@ -6,7 +6,7 @@ const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST';
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const CHANGE_TEXT_MESSAGE = 'CHANGE-TEXT-MESSAGE';
 
-export let store = {
+let store = {
     _state: {
         profilePage: {
             textForNewPost: '',
@@ -52,3 +52,5 @@ export let store = {
 
     },
 }
+
+export default store;
