@@ -5,7 +5,7 @@ import {addPostActionCreator, changeTextPostActionCreator} from "../../../Redux/
 
 const MyPosts = (props) => {
 
-    let postsElements = props.posts.map(post => <Post key = {props.id}
+    let postsElements = props.profilePage.posts.map(post => <Post key = {post.id}
                                                       message = {post.message}
                                                       likesCount = {post.likesCount} />)
 
@@ -23,7 +23,7 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <div className={style.item}>
                 <div>
-                    <textarea onChange={changeText} value={props.textForNewPost}/>
+                    <textarea onChange={changeText} value={props.profilePage.textForNewPost}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

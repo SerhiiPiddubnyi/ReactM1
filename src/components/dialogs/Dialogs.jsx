@@ -4,7 +4,6 @@ import MessageItem from "./messageItem/MesageItem";
 import DialogItem from "./dialogItem/DialogItem";
 
 const Dialogs = (props) => {
-    let store = props.store;
     let newMessageArea = React.createRef();
 
     let addMessage = () => {
@@ -13,13 +12,13 @@ const Dialogs = (props) => {
 
     let changeTextMessage = (e) => {
         let text = e.target.value;
-        props.changeTextMesage(text);
+        props.changeTextMessage(text);
     }
 
-    let dialogsElements = store.dialogs.map(dialog => <DialogItem key={dialog.id}
+    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id}
                                                                         name={dialog.name}
                                                                         id={dialog.id}/>);
-    let messagesElements = store.messages.map(message => <MessageItem key={message.id}
+    let messagesElements = props.dialogsPage.messages.map(message => <MessageItem key={message.id}
                                                                             message={message.message}/>)
 
     return (
@@ -29,7 +28,7 @@ const Dialogs = (props) => {
             </div>
             <div className={style.messages}>
                 {messagesElements}
-                <textarea ref={newMessageArea} onChange={changeTextMessage} value={store.textForNewMessage}/>
+                <textarea ref={newMessageArea} onChange={changeTextMessage} value={props.dialogsPage.textForNewMessage}/>
                 <button onClick={addMessage}>Send!</button>
             </div>
         </div>
