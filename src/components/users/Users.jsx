@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 const Users = (props) => {
     let firstPage = 0;
@@ -40,11 +41,32 @@ const Users = (props) => {
                 <div>
                     {user.followed
                         ? <button onClick={() => {
-                            props.unfollow(user.id)
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                withCredentials: true,
+                                headers: {
+                                    'API-KEY': '62005d27-039f-4c86-85d5-445b3f38c01d'
+                                }
+                            })
+                                .then(responce => {
+                                    if (responce.data.resultCode == 0) {
+                                        props.unfollow(user.id)
+                                    }
+                                })
                         }}>Unfollow</button>
                         : <button onClick={() => {
-                            props.follow(user.id)
-                        }}>Follow</button>}
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                withCredentials: true,
+                                headers: {
+                                    'API-KEY': '62005d27-039f-4c86-85d5-445b3f38c01d'
+                                }
+                            })
+                                .then(responce => {
+                                    if (responce.data.resultCode == 0) {
+                                        props.follow(user.id)
+                                    }
+                                })
+                        }}>Follow</button>
+                    }
                 </div>
             </span>
             <span>
