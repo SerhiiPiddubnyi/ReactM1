@@ -16,15 +16,15 @@ export const UsersAPI = {
 }
 
 export  const  FollowAPI =  {
-    follow(userId){
-        return instanceAPI.post(`follow/${userId}`)
-            .then(responce => responce.data)
-    },
+    following(userId, type){
+        if (type === "follow") {
+            return instanceAPI.post(`follow/${userId}`)
+                .then(responce => responce.data)
+        }
 
-    unfollow(userId){
         return instanceAPI.delete(`follow/${userId}`)
             .then(responce => responce.data)
-    }
+    },
 }
 
 export const AuthAPI = {
@@ -33,3 +33,11 @@ export const AuthAPI = {
             .then(responce => responce.data);
     },
 }
+
+export const ProfileAPI = {
+    getProfile(userId){
+        return instanceAPI.get(`profile/${userId}`)
+            .then(responce => responce.data);
+    },
+}
+
