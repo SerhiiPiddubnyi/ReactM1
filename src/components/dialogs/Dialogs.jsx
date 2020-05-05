@@ -2,7 +2,6 @@ import React from "react";
 import style from "./Dialogs.module.css"
 import MessageItem from "./messageItem/MesageItem";
 import DialogItem from "./dialogItem/DialogItem";
-import {Redirect} from "react-router-dom";
 
 const Dialogs = (props) => {
     let newMessageArea = React.createRef();
@@ -21,10 +20,6 @@ const Dialogs = (props) => {
                                                                               id={dialog.id}/>);
     let messagesElements = props.dialogsPage.messages.map(message => <MessageItem key={message.id}
                                                                                   message={message.message}/>)
-
-    if (!props.isAuth) {
-        return <Redirect to ={"/login"}/>
-    }
 
         return (
             <div className={style.dialogs}>
