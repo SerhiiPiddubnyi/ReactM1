@@ -10,9 +10,9 @@ const ProfileInfo = (props) => {
 debugger
     return (
         <div>
-            <div>
-                <img className={style.imgHead} src='https://www.w3schools.com/howto/img_snow_wide.jpg'/>
-            </div>
+            {/*<div>*/}
+            {/*    <img className={style.imgHead} src='https://www.w3schools.com/howto/img_snow_wide.jpg'/>*/}
+            {/*</div>*/}
             <div className={style.deckriptionBlock}>
                 <div>{props.userProfile.fullName}</div>
                 <img className={style.userPic} src={props.userProfile.photos.small ? props.userProfile.photos.small : userPhoto}/>

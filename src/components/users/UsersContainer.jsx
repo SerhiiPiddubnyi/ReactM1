@@ -1,14 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    followingSuccess,
-    toggleIsFetchingFollow,
     setUsersCreator, following,
 } from "../../Redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../Common/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
-class UsersAPIComponent extends React.Component {
+class UsersComponent extends React.Component {
     componentDidMount() {
         this.props.setUsersCreator(this.props.currentPage, this.props.pageSize);
     }
@@ -43,7 +43,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {
-    setUsersCreator,
-    following,
-})(UsersAPIComponent);
+export default compose(
+    connect(mapStateToProps, { setUsersCreator, following, }),
+    withAuthRedirect,
+)(UsersComponent)
+
