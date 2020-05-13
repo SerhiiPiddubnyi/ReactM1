@@ -13,6 +13,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
+    "redux-form": "^8.3.5",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -35,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:SerhiiPiddubnyi/ReactM1.git",
+  "author": "Serhii Piddubnyi <sergeu_ne@ukr.net>",
+  "license": "MIT"
 }

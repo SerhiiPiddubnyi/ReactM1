@@ -1,6 +1,7 @@
 import React from "react";
 import style from './MyPosts.module.css';
 import Post from "./post/Post";
+import NewPostForm from "./NewPostsForm";
 
 const MyPosts = (props) => {
 
@@ -20,14 +21,7 @@ const MyPosts = (props) => {
     return (
         <div className={style.postsBlock}>
             <h3>My posts</h3>
-            <div className={style.item}>
-                <div>
-                    <textarea onChange={changeText} value={props.profilePage.textForNewPost}/>
-                </div>
-                <div>
-                    <button onClick={addPost}>Add post</button>
-                </div>
-            </div>
+            <NewPostForm {...props}/>
             {postsElements}
         </div>
     );

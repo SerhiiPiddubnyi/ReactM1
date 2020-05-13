@@ -1,8 +1,6 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const CHANGE_TEXT_MESSAGE = 'CHANGE-TEXT-MESSAGE';
 
 const instalState = {
-    textForNewMessage: '',
     dialogs: [
         {id: 1, name: 'Vasya'},
         {id: 2, name: 'Kasya'},
@@ -19,36 +17,21 @@ const instalState = {
 }
 
 const dialogsReducer = (state = instalState, action) => {
-    let stateCopy;
     switch (action.type) {
         case ADD_MESSAGE:
-            let messageBody = state.textForNewMessage;
             return {
                 ...state,
-                textForNewMessage: '',
-                messages: [...state.messages, { id: 4, message: messageBody, }]
+                messages: [...state.messages, { id: 4, message: action.text,}]
             }
 
-        case CHANGE_TEXT_MESSAGE:
-            return {
-                ...state,
-                textForNewMessage: action.newText,
-            }
         default:
             return state;
 
     }
 }
 
-export let addMessageActionCreator = () => {
-    return {type: ADD_MESSAGE};
-}
-
-export let changeTextMessageActionCreator = (text) => {
-    return {
-        type: CHANGE_TEXT_MESSAGE,
-        newText: text
-    };
+export let addMessageActionCreator = (text) => {
+    return {type: ADD_MESSAGE, text};
 }
 
 export default dialogsReducer;
