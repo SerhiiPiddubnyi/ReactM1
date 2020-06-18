@@ -4,7 +4,7 @@ import {
     setUsersCreator, following,
 } from "../../Redux/users-reducer";
 import Users from "./Users";
-import Preloader from "../Common/Preloader";
+import Preloader from "../common/Preloader";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
