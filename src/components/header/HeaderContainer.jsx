@@ -2,12 +2,9 @@ import React from "react";
 import Header from "./Header";
 import * as axios from "axios";
 import {connect} from "react-redux";
-import {letsAuthMe, logout} from "../../Redux/auth-reducer";
+import {logout} from "../../Redux/auth-reducer";
 
 class HeaderContainer extends React.Component {
-    componentDidMount() {
-        this.props.letsAuthMe();
-    }
 
     render(){
         return <Header {...this.props}/>;
@@ -19,4 +16,4 @@ const mapStateToProps = (state) => ( {
     login: state.auth.login,
 } )
 
-export  default connect (mapStateToProps, {letsAuthMe, logout})(HeaderContainer);
+export  default connect (mapStateToProps, {logout})(HeaderContainer);

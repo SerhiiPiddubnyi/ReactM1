@@ -6,7 +6,6 @@ import {
 import Users from "./Users";
 import Preloader from "../common/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 class UsersComponent extends React.Component {
     componentDidMount() {
@@ -45,6 +44,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, { setUsersCreator, following, }),
-    withAuthRedirect,
 )(UsersComponent)
 
