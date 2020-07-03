@@ -2,7 +2,7 @@ import style from "./ProfileInfo.module.css";
 import React from "react";
 import Preloader from "../../common/Preloader";
 import userPhoto from "../../../assets/images/user.png";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 const ProfileInfo = (props) => {
@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
             <div className={style.deckriptionBlock}>
                 <div>{props.userProfile.fullName}</div>
                 <img className={style.userPic} src={props.userProfile.photos.small ? props.userProfile.photos.small : userPhoto}/>
-                <ProfileStatus status ={props.status } updateStatus = {props.updateStatus}/>
+                <ProfileStatusWithHooks status ={props.status } updateStatus = {props.updateStatus}/>
             </div>
         </div>
 
