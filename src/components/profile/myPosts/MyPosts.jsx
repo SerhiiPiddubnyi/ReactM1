@@ -3,20 +3,13 @@ import style from './MyPosts.module.css';
 import Post from "./post/Post";
 import NewPostForm from "./NewPostsForm";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(props => {
 
-    let postsElements = props.profilePage.posts.map(post => <Post key = {post.id}
-                                                      message = {post.message}
-                                                      likesCount = {post.likesCount} />)
+    console.log("render")
 
-    let addPost = () => {
-        props.addPost();
-    };
-
-    let changeText = (e) => {
-        let text = e.target.value;
-        props.changePostText(text);
-    }
+    let postsElements = props.profilePage.posts.map(post => <Post key={post.id}
+                                                                  message={post.message}
+                                                                  likesCount={post.likesCount}/>)
 
     return (
         <div className={style.postsBlock}>
@@ -25,6 +18,6 @@ const MyPosts = (props) => {
             {postsElements}
         </div>
     );
-}
+})
 
 export default MyPosts;
