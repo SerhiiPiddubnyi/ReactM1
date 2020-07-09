@@ -1,11 +1,11 @@
 import {FollowAPI, UsersAPI} from "../api/Api";
 
-const FOLLOWING = 'FOLLOWING';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FETCHING_FOLLOW = 'TOGGLE_IS_FETCHING_FOLLOW';
+const FOLLOWING = 'users/FOLLOWING';
+const SET_USERS = 'users/SET_USERS';
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'users/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FETCHING_FOLLOW = 'users/TOGGLE_IS_FETCHING_FOLLOW';
 
 const initialState = {
     users: [],
@@ -72,30 +72,25 @@ export let toggleIsFetchingFollow = (isFething, userId) => {
     return {type: TOGGLE_IS_FETCHING_FOLLOW, isFething, userId}
 }
 
-export const setUsersCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(setCurrentPage(currentPage));
-        dispatch(toggleIsFetching(true));
-        UsersAPI.getUsers(currentPage, pageSize)
-            .then(responce => {
-                dispatch(toggleIsFetching(false));
-                dispatch(setUsers(responce.items));
-                dispatch(setTotalUsersCount(responce.totalCount));
-            })
-    }
+export const setUsersCreator = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(setCurrentPage(currentPage));
+    dispatch(toggleIsFetching(true));
+
+    const responce = await UsersAPI.getUsers(currentPage, pageSize)
+
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(responce.items));
+    dispatch(setTotalUsersCount(responce.totalCount));
 }
 
-export const following = (userId, type) => {
-    return (dispatch) => {
-        dispatch(toggleIsFetchingFollow(true, userId));
-        FollowAPI.following(userId, type)
-            .then(responce => {
-                if (responce.resultCode == 0) {
-                    dispatch(followingSuccess(userId));
-                }
-               dispatch(toggleIsFetchingFollow(false, userId));
-            })
+export const following = (userId, type) => async (dispatch) => {
+    dispatch(toggleIsFetchingFollow(true, userId));
+    const responce = await FollowAPI.following(userId, type)
+
+    if (responce.resultCode === 0) {
+        dispatch(followingSuccess(userId));
     }
+    dispatch(toggleIsFetchingFollow(false, userId));
 }
 
 export default usersReducer;

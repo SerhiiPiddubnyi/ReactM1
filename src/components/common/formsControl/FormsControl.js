@@ -2,7 +2,7 @@ import React from "react";
 import  style from "./FormsControl.module.css"
 
 export const Element = Element => ({input, meta, ...props}) => {
-    const hasError = meta.touched && meta.error
+    const hasError = meta.touched && meta.error;
     return(
         <div className={style.formControl + " " + (hasError ? style.error : "")}>
             <div>

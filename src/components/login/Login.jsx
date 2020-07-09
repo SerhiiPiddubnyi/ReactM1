@@ -10,9 +10,9 @@ import style from "../common/formsControl/FormsControl.module.css"
 const Input = Element("input")
 const maxLength20 = maxLengthCreator(20)
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={"Email"}
                        validate={[requiredField, maxLength20]}
@@ -31,8 +31,8 @@ const LoginForm = (props) => {
                        component = {Input}
                        name = {"rememberMe"}/> Remember me
             </div>
-            {props.error && <div className={style.formSummaryError}>
-                {props.error}
+            {error && <div className={style.formSummaryError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>
