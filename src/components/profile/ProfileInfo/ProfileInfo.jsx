@@ -5,7 +5,7 @@ import userPhoto from "../../../assets/images/user.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
-const ProfileInfo = (userProfile, status, updateStatus) => {
+const ProfileInfo = ({userProfile, status, updateStatus}) => {
     if (!userProfile){
         return <Preloader/>
     }
