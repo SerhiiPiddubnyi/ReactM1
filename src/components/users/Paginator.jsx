@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Users.module.css";
+import styles from "./Paginator.module.css"
 
 const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
     let firstPage = 0;
@@ -17,13 +17,25 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
         pages.push(i);
     }
 
-    return <div>
+    const ButtonToStart = () => {
+        return <button onClick={() => {onPageChanged(1)}}>To start</button>
+    }
+
+    const ButtonToEnd = () => {
+        return <button onClick={() => {onPageChanged(pagesCount)}}>To end</button>
+    }
+
+    return <div className={styles.paginatorComment}>
+        {currentPage > 6 && <ButtonToStart />}
         {pages.map(page => {
-            return <span className={currentPage === page && styles.selectedPage}
-                         onClick={() => {
-                             onPageChanged(page)
-                         }}>{page + ' '}</span>
+            return <span>
+                <span className={currentPage === page ? styles.selectedPage : styles.allPages}
+                      onClick={() => {
+                          onPageChanged(page)
+                      }}>{page}</span>
+            </span>
         })}
+        {currentPage + 5 < pagesCount && <ButtonToEnd />}
     </div>
 
 }

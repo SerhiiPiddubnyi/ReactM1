@@ -1,0 +1,19 @@
+.selectedPage{
+    margin: 2px;
+    padding: 3px;
+    font-weight: bold;
+    font-size: large;
+    border: solid blue 2px;
+}
+
+.allPages{
+    padding: 3px;
+    margin: 2px;
+    border: solid black 1px;
+}
+
+.paginatorComment{
+    margin: 5px;
+    margin-bottom: 10px;
+;
+}
