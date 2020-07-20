@@ -1,9 +1,6 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from "./components/navbar/Navbar";
-import News from "./components/news/News";
-import Setting from "./components/setting/Setting";
-import Videos from "./components/videos/Videos"
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
@@ -15,6 +12,14 @@ import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/common/Preloader";
 import store from "./Redux/redux-store";
+import withSuspense from "./hoc/WithSuspense";
+
+const News = React.lazy(() => import("./components/news/News"))
+const Setting = React.lazy(() => import("./components/setting/Setting"))
+const Video = React.lazy(() => import("./components/videos/Videos"))
+// import News from "./components/news/News";
+// import Setting from "./components/setting/Setting";
+// import Videos from "./components/videos/Videos"
 
 class App extends React.Component {
     componentDidMount() {
@@ -23,7 +28,7 @@ class App extends React.Component {
 
     render() {
         if (!this.props.initialized) {
-            return <Preloader />
+            return <Preloader/>
         }
 
         return (
@@ -39,13 +44,12 @@ class App extends React.Component {
                            render={() => <UsersContainer/>}/>
                     <Route path="/login"
                            render={() => <Login/>}/>
-
                     <Route path="/news"
-                           component={News}/>
+                           render={withSuspense(News)}/>
                     <Route path="/setting"
-                           component={Setting}/>
+                           render={withSuspense(Setting)}/>
                     <Route path="/videos"
-                           component={Videos}/>
+                           render={withSuspense(Video)}/>
                 </div>
             </div>
         )
@@ -56,17 +60,17 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
 
-const ContainerApp = compose (
+const ContainerApp = compose(
     withRouter,
     connect
     (mapStateToProps, {initializeApp}))(App);
 
 const MainApp = (props) => {
     return <BrowserRouter>
-            <Provider store={store}>
-                <ContainerApp />
-            </ Provider>
-        </BrowserRouter>;
+        <Provider store={store}>
+            <ContainerApp/>
+        </ Provider>
+    </BrowserRouter>;
 }
 
 export default MainApp;
