@@ -29,8 +29,10 @@ export  const  FollowAPI =  {
 
 export const AuthAPI = {
     authMe(){
-        return instanceAPI.get(`auth/me`)
-            .then(responce => responce.data);
+        return instanceAPI
+            .get(`auth/me`)
+            .then(responce => {
+                if (responce.data.resultCode === 0) return responce.data});
     },
     login(email, password, rememberMe = null){
         return instanceAPI.post(`auth/login`, { email, password, rememberMe })

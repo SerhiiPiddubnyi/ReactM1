@@ -1,7 +1,7 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import './App.css';
 import Navbar from "./components/navbar/Navbar";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {HashRouter, Route, withRouter} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
@@ -66,11 +66,11 @@ const ContainerApp = compose(
     (mapStateToProps, {initializeApp}))(App);
 
 const MainApp = (props) => {
-    return <BrowserRouter>
+    return <HashRouter>
         <Provider store={store}>
             <ContainerApp/>
         </ Provider>
-    </BrowserRouter>;
+    </HashRouter>;
 }
 
 export default MainApp;
