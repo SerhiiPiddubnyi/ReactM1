@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/ReactM1/static/css/main.69face8d.chunk.css",
+    "main.js": "/ReactM1/static/js/main.7c28f459.chunk.js",
+    "main.js.map": "/ReactM1/static/js/main.7c28f459.chunk.js.map",
+    "runtime-main.js": "/ReactM1/static/js/runtime-main.b1781abf.js",
+    "runtime-main.js.map": "/ReactM1/static/js/runtime-main.b1781abf.js.map",
+    "static/js/2.2fcf492f.chunk.js": "/ReactM1/static/js/2.2fcf492f.chunk.js",
+    "static/js/2.2fcf492f.chunk.js.map": "/ReactM1/static/js/2.2fcf492f.chunk.js.map",
+    "static/css/3.25b44a53.chunk.css": "/ReactM1/static/css/3.25b44a53.chunk.css",
+    "static/js/3.dc25ccd2.chunk.js": "/ReactM1/static/js/3.dc25ccd2.chunk.js",
+    "static/js/3.dc25ccd2.chunk.js.map": "/ReactM1/static/js/3.dc25ccd2.chunk.js.map",
+    "static/css/4.fdff491f.chunk.css": "/ReactM1/static/css/4.fdff491f.chunk.css",
+    "static/js/4.f63b82b6.chunk.js": "/ReactM1/static/js/4.f63b82b6.chunk.js",
+    "static/js/4.f63b82b6.chunk.js.map": "/ReactM1/static/js/4.f63b82b6.chunk.js.map",
+    "static/css/5.8b0af0fb.chunk.css": "/ReactM1/static/css/5.8b0af0fb.chunk.css",
+    "static/js/5.002c03ab.chunk.js": "/ReactM1/static/js/5.002c03ab.chunk.js",
+    "static/js/5.002c03ab.chunk.js.map": "/ReactM1/static/js/5.002c03ab.chunk.js.map",
+    "index.html": "/ReactM1/index.html",
+    "precache-manifest.8b7fbfdf8b5712f8f1894f55a70423f4.js": "/ReactM1/precache-manifest.8b7fbfdf8b5712f8f1894f55a70423f4.js",
+    "service-worker.js": "/ReactM1/service-worker.js",
+    "static/css/3.25b44a53.chunk.css.map": "/ReactM1/static/css/3.25b44a53.chunk.css.map",
+    "static/css/4.fdff491f.chunk.css.map": "/ReactM1/static/css/4.fdff491f.chunk.css.map",
+    "static/css/5.8b0af0fb.chunk.css.map": "/ReactM1/static/css/5.8b0af0fb.chunk.css.map",
+    "static/css/main.69face8d.chunk.css.map": "/ReactM1/static/css/main.69face8d.chunk.css.map",
+    "static/js/2.2fcf492f.chunk.js.LICENSE.txt": "/ReactM1/static/js/2.2fcf492f.chunk.js.LICENSE.txt",
+    "static/media/loader.gif": "/ReactM1/static/media/loader.dd50b232.gif",
+    "static/media/user.png": "/ReactM1/static/media/user.70914ad2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b1781abf.js",
+    "static/js/2.2fcf492f.chunk.js",
+    "static/css/main.69face8d.chunk.css",
+    "static/js/main.7c28f459.chunk.js"
+  ]
+}
