@@ -9,14 +9,14 @@ const instanceAPI = axios.create({
 });
 
 export const UsersAPI = {
-    getUsers(currentPage = 1, pageSize = 10){
+    getUsers(currentPage = 1, pageSize = 10) {
         return instanceAPI.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(responce => responce.data);
     },
 }
 
-export  const  FollowAPI =  {
-    following(userId, type){
+export const FollowAPI = {
+    following(userId, type) {
         if (type === "follow") {
             return instanceAPI.post(`follow/${userId}`)
                 .then(responce => responce.data)
@@ -28,35 +28,47 @@ export  const  FollowAPI =  {
 }
 
 export const AuthAPI = {
-    authMe(){
+    authMe() {
         return instanceAPI
             .get(`auth/me`)
             .then(responce => {
-                if (responce.data.resultCode === 0) return responce.data});
+                if (responce.data.resultCode === 0) return responce.data
+            });
     },
-    login(email, password, rememberMe = null){
-        return instanceAPI.post(`auth/login`, { email, password, rememberMe })
+    login(email, password, rememberMe = null) {
+        return instanceAPI.post(`auth/login`, {email, password, rememberMe})
             .then(responce => responce.data);
     },
-    logout(){
+    logout() {
         return instanceAPI.delete(`auth/login`)
             .then(responce => responce.data);
     },
 }
 
 export const ProfileAPI = {
-    getProfile(userId){
+    getProfile(userId) {
         return instanceAPI.get(`profile/${userId}`)
             .then(responce => responce.data);
     },
 
-    getStatus(userId){
+    getStatus(userId) {
         return instanceAPI.get(`profile/status/${userId}`)
             .then(responce => responce.data);
     },
 
-    updateStatus(status){
-        return instanceAPI.put(`profile/status`, {status : status})
+    updateStatus(status) {
+        return instanceAPI.put(`profile/status`, {status: status})
+            .then(responce => responce.data);
+    },
+
+    savePhoto(photo) {
+        const formData = new FormData();
+        formData.append("image", photo)
+        return instanceAPI.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(responce => responce.data);
     },
 

@@ -5,16 +5,23 @@ import userPhoto from "../../../assets/images/user.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
-const ProfileInfo = ({userProfile, status, updateStatus}) => {
+const ProfileInfo = ({userProfile, status, updateStatus, isOwner, addMainPhoto}) => {
     if (!userProfile){
         return <Preloader/>
+    }
+
+    const onMainPhotoSelected = (e) =>{
+        if (e.target.files.length){
+            addMainPhoto(e.target.files[0]);
+        }
     }
 
     return (
         <div>
             <div className={style.deckriptionBlock}>
                 <div>{userProfile.fullName}</div>
-                <img className={style.userPic} src={userProfile.photos.small ? userProfile.photos.small : userPhoto}/>
+                <img className={style.userPic} src={userProfile.photos.small || userPhoto}/>
+                {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 <ProfileStatusWithHooks status ={status } updateStatus = {updateStatus}/>
             </div>
         </div>
