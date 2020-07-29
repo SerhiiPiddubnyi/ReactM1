@@ -1,2 +1,0 @@
-(this.webpackJsonpSN=this.webpackJsonpSN||[]).push([[5],{289:function(n,t,e){},292:function(n,t,e){"use strict";e.r(t);var i=e(0),s=e.n(i);e(289);t.default=function(){return s.a.createElement("div",null,"Videos")}}}]);
-//# sourceMappingURL=5.002c03ab.chunk.js.map
