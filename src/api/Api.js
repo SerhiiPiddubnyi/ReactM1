@@ -32,7 +32,7 @@ export const AuthAPI = {
         return instanceAPI
             .get(`auth/me`)
             .then(responce => {
-                if (responce.data.resultCode === 0) return responce.data
+                return responce.data
             });
     },
     login(email, password, rememberMe = null) {
@@ -48,6 +48,11 @@ export const AuthAPI = {
 export const ProfileAPI = {
     getProfile(userId) {
         return instanceAPI.get(`profile/${userId}`)
+            .then(responce => responce.data);
+    },
+
+    saveProfile(userData) {
+        return instanceAPI.put(`profile`,  userData)
             .then(responce => responce.data);
     },
 

@@ -5,8 +5,6 @@ import NewPostForm from "./NewPostsForm";
 
 const MyPosts = React.memo(props => {
 
-    console.log("render")
-
     let postsElements = props.profilePage.posts.map(post => <Post key={post.id}
                                                                   message={post.message}
                                                                   likesCount={post.likesCount}/>)

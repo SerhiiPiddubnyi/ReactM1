@@ -1,4 +1,5 @@
 import {ProfileAPI} from "../api/Api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_MAIN_PHOTO = 'profile/SET_MAIN_PHOTO';
@@ -41,6 +42,7 @@ const profileReducer = (state = initialState, action) => {
                 userProfile: action.userProfile,
             };
         }
+
         case SET_STATUS : {
             return {
                 ...state,
@@ -99,6 +101,27 @@ export let addMainPhoto = (photo) => async (dispatch) => {
     const responce = await ProfileAPI.savePhoto(photo)
     if (responce.resultCode === 0)
         dispatch(setMainPhotoActionCreator(responce.data.photos))
+}
+
+export let saveProfile = (userData) => async (dispatch, getState) => {
+    const userId = getState().auth.id;
+    const responce = await ProfileAPI.saveProfile(userData)
+    let message = responce.messages.length > 0 ? responce.messages[0] : "Some error";
+    const getWrongField = (message) => {
+        const position = message.indexOf("Contacts->");
+        if (position >= 0){
+            return message.substring(position + 10, message.length - 1).toLowerCase()
+        }
+    }
+
+    if (responce.resultCode === 0){
+        dispatch(getUserProfile(userId))
+    }else {
+        const wrongField  = getWrongField(message)
+        dispatch(stopSubmit("profileInfo", {"contacts": {[wrongField] : `${wrongField} contact is incorrect`}}))
+        return Promise.reject(message)
+    }
+
 }
 
 export default profileReducer;
