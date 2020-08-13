@@ -35,13 +35,23 @@ export const AuthAPI = {
                 return responce.data
             });
     },
-    login(email, password, rememberMe = null) {
-        return instanceAPI.post(`auth/login`, {email, password, rememberMe})
+    login(email, password, rememberMe = false, captcha) {
+        return instanceAPI.post(`auth/login`, {email, password, rememberMe, captcha})
             .then(responce => responce.data);
     },
     logout() {
         return instanceAPI.delete(`auth/login`)
             .then(responce => responce.data);
+    },
+}
+
+export const SecurityAPI = {
+    getCaptcha() {
+        return instanceAPI
+            .get(`security/get-captcha-url`)
+            .then(responce => {
+                return responce.data
+            });
     },
 }
 
